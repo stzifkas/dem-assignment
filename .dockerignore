@@ -1,0 +1,36 @@
+# Git
+.git
+.gitignore
+
+# Docker
+.docker
+
+# Python
+app/__pycache__/
+app/*/__pycache__/
+app/*/*/__pycache__/
+app/*/*/*/__pycache__/
+.env/
+.venv/
+venv/
+
+# Django #
+*.log
+*.pot
+*.pyc
+__pycache__
+db.sqlite3
+media
+
+# Local PostgreSQL data
+data/
+
+
+# Visual Studio Code # 
+.vscode/* 
+!.vscode/settings.json 
+!.vscode/tasks.json 
+!.vscode/launch.json 
+!.vscode/extensions.json 
+.history
+.vscode/
