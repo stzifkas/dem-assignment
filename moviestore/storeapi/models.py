@@ -1,3 +1,5 @@
+from datetime import datetime
+from django.utils import timezone
 from django.db import models
 from django.conf import settings
 
@@ -9,7 +11,7 @@ class Movie(models.Model):
     imdb_rating = models.FloatField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    category = models.ForeignKey('Category', on_delete=models.CASCADE)
+    category = models.ManyToManyField('Category', related_name='movies')
 
     def __str__(self):
         return self.title
@@ -22,9 +24,11 @@ class Category(models.Model):
 
 class Rental(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    customer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    rented_at = models.DateTimeField(auto_now_add=True)
-    returned_at = models.DateTimeField(null=True, blank=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    rented_at = models.DateTimeField(default=timezone.now)
+    updated_at = models.DateTimeField(auto_now=True)
+    activated = models.BooleanField(default=False)
+    price = models.FloatField(default=1.0)
 
     def __str__(self):
         return f'{self.movie} - {self.customer}'
