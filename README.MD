@@ -27,10 +27,6 @@ Use cases have been divided into the following categories:
 * Authenticated users (They can rent a movie (create a new rental), pay for it (create a new payment) and return it (delete rental).
 * Superusers (They can create a new movie, update a movie, delete a movie, create a new category, update a category, delete a category etc.)
 
-```
-Demo superuser: moviestore/kwdikos123
-```
-
 # Installation
 The app is docker based and can be built using the docker-compose file.
 ```
@@ -41,6 +37,13 @@ The app is running on port 8000. The app is accessible from the browser or using
 In order to run the app you just need to run the command:
 ```
 docker-compose up
+```
+
+# Superuser creation
+The superuser can be created using the following command:
+
+```
+docker-compose run --rm app sh -c "python manage.py createsuperuser"
 ```
 # Testing
 
